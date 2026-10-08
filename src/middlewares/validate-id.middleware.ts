@@ -13,7 +13,7 @@ export const validateIdMiddleware = (
 
   if (isNaN(parsedId) || !Number.isInteger(parsedId) || parsedId <= 0) {
   
-    throw new AppError(400, "Invalid incident id");
+    throw new AppError(400, "ID de incidente inválido");
   }
 
   next();

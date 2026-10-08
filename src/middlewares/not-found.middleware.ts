@@ -8,6 +8,6 @@ export const notFoundMiddleware = (
     
   res.status(404).json({
     ok: false,
-    message: "Route not found"
+    message: "Ruta no encontrada"
   });
 };

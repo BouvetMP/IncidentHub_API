@@ -8,7 +8,7 @@ export const adminMiddleware = (
 ): void => {
   
   if (req.userRole !== "admin") {
-    throw new AppError(403, "Access denied. Admin privileges required");
+    throw new AppError(403, "Acceso denegado. Se requieren permisos de administrador");
   }
 
   next();

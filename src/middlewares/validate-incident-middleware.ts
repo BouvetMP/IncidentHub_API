@@ -9,31 +9,31 @@ export const validateIncidentMiddleware = (
   const { title, description, reporter, location, priority, estimatedMinutes } = req.body;
 
   if (!title || typeof title !== "string" || title.trim().length === 0) {
-    throw new AppError(400, "Title is required and must be a non-empty string");
+    throw new AppError(400, "El título es obligatorio y debe ser un texto no vacío");
   }
 
 
   if (!description || typeof description !== "string" || description.trim().length === 0) {
-    throw new AppError(400, "Description is required and must be a non-empty string");
+    throw new AppError(400, "La descripción es obligatoria y debe ser un texto no vacío");
   }
 
   if (!reporter || typeof reporter !== "string" || reporter.trim().length === 0) {
-    throw new AppError(400, "Reporter is required and must be a non-empty string");
+    throw new AppError(400, "El reportante es obligatorio y debe ser un texto no vacío");
   }
 
 
   if (!location || typeof location !== "string" || location.trim().length === 0) {
-    throw new AppError(400, "Location is required and must be a non-empty string");
+    throw new AppError(400, "La ubicación es obligatoria y debe ser un texto no vacío");
   }
 
 
   if (priority === undefined || priority === null) {
-    throw new AppError(400, "Priority is required");
+    throw new AppError(400, "La prioridad es obligatoria");
   }
 
 
   if (estimatedMinutes === undefined || estimatedMinutes === null) {
-    throw new AppError(400, "Estimated minutes is required");
+    throw new AppError(400, "El tiempo estimado en minutos es obligatorio");
   }
 
   next();

@@ -9,19 +9,19 @@ export const validateTimeMiddleware = (
   const { estimatedMinutes } = req.body;
 
   if (typeof estimatedMinutes !== "number" || isNaN(estimatedMinutes)) {
-    throw new AppError(400, "Estimated minutes must be a valid number");
+    throw new AppError(400, "El tiempo estimado debe ser un número válido");
   }
 
   if (!Number.isInteger(estimatedMinutes)) {
-    throw new AppError(400, "Estimated minutes must be an integer");
+    throw new AppError(400, "El tiempo estimado debe ser un número entero");
   }
 
   if (estimatedMinutes <= 0) {
-    throw new AppError(400, "Estimated minutes must be greater than 0");
+    throw new AppError(400, "El tiempo estimado debe ser mayor a 0");
   }
 
   if (estimatedMinutes > 480) {
-    throw new AppError(400, "Estimated minutes cannot exceed 480 (8 hours)");
+    throw new AppError(400, "El tiempo estimado no puede superar los 480 minutos (8 horas)");
   }
 
   next();

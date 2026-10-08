@@ -16,7 +16,6 @@ export const getAllIncidents = (req: Request, res: Response, next: NextFunction)
   }
 };
 
-
 export const getCriticalIncidents = (req: Request, res: Response, next: NextFunction): void => {
   try {
     const criticalIncidents = incidents.filter(
@@ -48,7 +47,6 @@ export const getPendingIncidents = (req: Request, res: Response, next: NextFunct
     next(error);
   }
 };
-
 
 export const getIncidentStats = (req: Request, res: Response, next: NextFunction): void => {
   try {
@@ -83,12 +81,11 @@ export const getIncidentStats = (req: Request, res: Response, next: NextFunction
 
 export const getIncidentById = (req: Request, res: Response, next: NextFunction): void => {
   try {
-    
     const id = Number(req.params.id);
     const incident = incidents.find((i) => i.id === id);
 
     if (!incident) {
-      throw new AppError(404, "Incident not found");
+      throw new AppError(404, "Incidente no encontrado");
     }
 
     res.status(200).json({
@@ -99,7 +96,6 @@ export const getIncidentById = (req: Request, res: Response, next: NextFunction)
     next(error);
   }
 };
-
 
 export const createIncident = (req: Request, res: Response, next: NextFunction): void => {
   try {
@@ -121,7 +117,7 @@ export const createIncident = (req: Request, res: Response, next: NextFunction):
 
     res.status(201).json({
       ok: true,
-      message: "Incident created successfully",
+      message: "Incidente creado exitosamente",
       data: newIncident
     });
   } catch (error) {
@@ -129,14 +125,13 @@ export const createIncident = (req: Request, res: Response, next: NextFunction):
   }
 };
 
-
 export const updateIncident = (req: Request, res: Response, next: NextFunction): void => {
   try {
     const id = Number(req.params.id);
     const index = incidents.findIndex((i) => i.id === id);
 
     if (index === -1) {
-      throw new AppError(404, "Incident not found");
+      throw new AppError(404, "Incidente no encontrado");
     }
 
     const dto: UpdateIncidentDto = req.body;
@@ -155,7 +150,7 @@ export const updateIncident = (req: Request, res: Response, next: NextFunction):
 
     res.status(200).json({
       ok: true,
-      message: "Incident updated successfully",
+      message: "Incidente actualizado exitosamente",
       data: updatedIncident
     });
   } catch (error) {
@@ -163,14 +158,13 @@ export const updateIncident = (req: Request, res: Response, next: NextFunction):
   }
 };
 
-
 export const updateIncidentStatus = (req: Request, res: Response, next: NextFunction): void => {
   try {
     const id = Number(req.params.id);
     const index = incidents.findIndex((i) => i.id === id);
 
     if (index === -1) {
-      throw new AppError(404, "Incident not found");
+      throw new AppError(404, "Incidente no encontrado");
     }
 
     const { status }: UpdateStatusDto = req.body;
@@ -178,7 +172,7 @@ export const updateIncidentStatus = (req: Request, res: Response, next: NextFunc
     if (!status || !VALID_STATUSES.includes(status)) {
       throw new AppError(
         400,
-        `Invalid status '${status}'. Allowed values: ${VALID_STATUSES.join(", ")}`
+        `Estado inválido '${status}'. Valores permitidos: ${VALID_STATUSES.join(", ")}`
       );
     }
 
@@ -188,7 +182,7 @@ export const updateIncidentStatus = (req: Request, res: Response, next: NextFunc
     if (!allowedNextStatuses.includes(status)) {
       throw new AppError(
         400,
-        `Transition from '${currentStatus}' to '${status}' is not allowed`
+        `La transición de '${currentStatus}' hacia '${status}' no está permitida`
       );
     }
 
@@ -196,7 +190,7 @@ export const updateIncidentStatus = (req: Request, res: Response, next: NextFunc
 
     res.status(200).json({
       ok: true,
-      message: `Incident status updated to '${status}'`,
+      message: `Estado del incidente actualizado a '${status}'`,
       data: incidents[index]
     });
   } catch (error) {
@@ -210,7 +204,7 @@ export const deleteIncident = (req: Request, res: Response, next: NextFunction):
     const index = incidents.findIndex((i) => i.id === id);
 
     if (index === -1) {
-      throw new AppError(404, "Incident not found");
+      throw new AppError(404, "Incidente no encontrado");
     }
 
     incidents.splice(index, 1);

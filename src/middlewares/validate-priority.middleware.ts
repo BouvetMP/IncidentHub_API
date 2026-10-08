@@ -12,7 +12,7 @@ export const validatePriorityMiddleware = (
   if (!VALID_PRIORITIES.includes(priority)) {
     throw new AppError(
       400,
-      `Invalid priority '${priority}'. Allowed values: ${VALID_PRIORITIES.join(", ")}`
+      `Prioridad inválida '${priority}'. Valores permitidos: ${VALID_PRIORITIES.join(", ")}`
     );
 
   }
@@ -20,7 +20,7 @@ export const validatePriorityMiddleware = (
   if (priority === "CRITICAL" && req.body.estimatedMinutes > 60) {
     throw new AppError(
       400,
-      "Critical incidents cannot exceed 60 estimated minutes"
+      "Los incidentes críticos no pueden superar los 60 minutos estimados"
     );
   }
 
